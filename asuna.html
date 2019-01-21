@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .lfbox{
+            height: 450px;
+            width: 200px;
+            border: 1px black solid;
+            text-align: center;
+            float: left;
+            margin-left: 200px;
+            margin-top: 100px;
+            position: relative;
+
+        }
+        .lfbox img {
+          
+            margin-top: 5px;
+        }
+        .rtbox {
+            height: 600px;
+            width: 250px;
+            border: 1px black solid;
+            float: left;
+            margin-top: 100px;
+            text-align: center;
+            display: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .rtbox img {
+            height: 842px;
+            width: 282px;
+            position: absolute
+        }
+        .pointbox{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: rgba(246, 49, 14, 0.5);
+            position: absolute;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="lfbox">
+        <div class="pointbox"></div>
+        <img src="Asuna01.png" alt=""></div>
+
+    <div class="rtbox"><img src="Asuna01.png" alt=""></div>
+
+    <script>
+        //获取元素
+        var lfbox=document.querySelector('.lfbox')
+        var rtbox=document.querySelector('.rtbox')
+        var bigimg=document.querySelector('.rtbox img')
+        var pointbox=document.querySelector('.pointbox')
+
+        lfbox.onmouseenter=function (){
+            rtbox.style.display='block'
+            pointbox.style.display='block'
+        lfbox.onmouseleave=function(){
+            rtbox.style.display='none'
+            pointbox.style.display='none'
+        }
+        }
+        lfbox.onmousemove=function (e) {
+            var leftmove=e.clientX-lfbox.offsetLeft-pointbox.offsetWidth/2
+            var topmove=e.clientY-lfbox.offsetTop-pointbox.offsetHeight/2
+            if(leftmove<0){
+                leftmove=0
+            }
+            else if(leftmove>lfbox.offsetWidth-pointbox.offsetWidth){
+                leftmove=lfbox.offsetWidth-pointbox.offsetWidth
+            }
+            
+                
+            
+            if(topmove<0){
+                topmove=0
+            }
+            else if(topmove>lfbox.offsetHeight-pointbox.offsetHeight){
+                topmove=lfbox.offsetHeight-pointbox.offsetHeight
+            }
+            pointbox.style.left=leftmove+'px'
+            pointbox.style.top=topmove+'px'
+            bigimg.style.left=-2*leftmove+rtbox.offsetLeft/5+'px'
+            bigimg.style.top=-2*topmove+'px'
+        }
+        
+    </script>
+</body>
+</html>
